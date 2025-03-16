@@ -22,9 +22,15 @@ void printArray(int arr[], int size) {
 }
 
 int main() {
-    int arr[] = {64, 34, 25, 12, 22, 11, 90};
-    int n = sizeof(arr) / sizeof(arr[0]);
-    cout << "Unsorted array: ";
+    int n;
+    cout<<"Enter number of elements:";
+    cin>>n;
+    int arr[n];
+    cout<<"Enter"<<n<<"elements:"<<endl;
+    for(int i=0;i<n;i++){
+    cin>>arr[i];
+}
+    cout << "Original array: ";
     printArray(arr, n);
     bubbleSort(arr, n);
     cout << "Sorted array: ";
