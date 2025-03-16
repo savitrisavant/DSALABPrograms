@@ -1,34 +1,38 @@
-// Binary Search in C++
+// Binary Search using recursive function in C++
 
 #include <iostream>
 using namespace std;
-
-int binarySearch(int array[], int x, int low, int high) {
-  if (high >= low) {
-    int mid = low + (high - low) / 2;
-
-    // If found at mid, then return it
-    if (x == array[mid])
-      return mid;
-
-    // Search the right half
-    if (x > array[mid])
-      return binarySearch(array, x, mid + 1, high);
-
-    // Search the right half
-    return binarySearch(array, x, low, mid - 1);
-  }
-
-  return -1;
+// Recursive function for binary search
+int binarySearchRecursive(int arr[], int low, int high, int key) {
+if (low > high) {
+return -1; // Key not found
 }
-
-int main(void) {
-  int array[] = {3, 4, 5, 6, 7, 8, 9};
-  int x = 4;
-  int n = sizeof(array) / sizeof(array[0]);
-  int result = binarySearch(array, x, 0, n - 1);
-  if (result == -1)
-    printf("Not found");
-  else
-    printf("Element is found at index %d", result);
+int mid = low + (high - low) / 2;
+if (arr[mid] == key) {
+return mid; // Key found at index mid
+} else if (arr[mid] < key) {
+return binarySearchRecursive(arr, mid + 1, high, key); // Search in the right half
+} else {
+return binarySearchRecursive(arr, low, mid - 1, key); // Search in the left half
+}
+}
+int main() {
+int n;
+cout << "Enter the number of elements in the array: ";
+cin >> n;
+int arr[n];
+cout << "Enter " << n << " sorted elements: " <<"\n";
+for (int i = 0; i < n; i++) {
+cin >> arr[i];
+}
+int key;
+cout << "Enter the key to search for: ";
+cin >> key;
+int result = binarySearchRecursive(arr, 0, n - 1, key);
+if (result != -1) {
+cout << "Element found at index " << result << endl;
+} else {
+cout << "Element not found in the array" << endl;
+}
+return 0;
 }
